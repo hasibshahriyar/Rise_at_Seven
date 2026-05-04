@@ -59,18 +59,15 @@ if (wt) {
   wt.addEventListener('touchmove', e => { wt.scrollLeft = tScrollLeft - (e.touches[0].pageX - tStartX) * 1.2; }, { passive: true });
 }
 
-// Hero — local images (FirstSection + CDN copies)
+// Hero — EXACTLY the 6 images used on the real site (from js-random-image-2412 pool)
+// Picks ONE randomly per page load, same image used for bg AND inline heading image
 const heroImages = [
-  'images/FirstSection/Emirates-airpline-in-flight.webp',
-  'images/FirstSection/Pooky-Rechargable-Doorstop-Cordless-100-Straight-Empire-Pendant-Silk-Ikat-Shade-in-Black-and-Cream-Atlas-44-Single-chukka-Cordless-95-scaled-1-1.webp',
-  'images/FirstSection/RedBull-Instagram-Post-45.webp',
-  'images/FirstSection/Screenshot-2025-07-01-at-21.36.35.webp',
-  'images/FirstSection/spaseekers.webp',
-  'images/cdn/Screenshot-2025-06-23-at-23.14.49.webp',
-  'images/cdn/d4df0d30-d590-4e94-9056-9491f4beacba.webp',
-  'images/cdn/0B5A6875.webp',
-  'images/cdn/Screenshot-2025-06-23-at-22.39.35.webp',
-  'images/cdn/IMG_4280-2.webp',
+  'images/cdn/unnamed-6.webp',
+  'images/cdn/RedBull-Instagram-Post-45.webp',
+  'images/cdn/Emirates-airpline-in-flight.webp',
+  'images/cdn/Pooky-Rechargable-Doorstop-Cordless-100-Straight-Empire-Pendant-Silk-Ikat-Shade-in-Black-and-Cream-Atlas-44-Single-chukka-Cordless-95-scaled-1-1.webp',
+  'images/cdn/Screenshot-2025-07-01-at-21.36.35.webp',
+  'images/cdn/spaseekers.webp',
 ];
 function shuffle(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
 const lastIndex = parseInt(localStorage.getItem('heroImgIndex') ?? '-1');

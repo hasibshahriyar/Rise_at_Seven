@@ -67,16 +67,18 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 .hero-bg{position:absolute;inset:-20px;background-size:cover;background-position:center;transition:opacity 1s ease;z-index:0;filter:blur(8px);transform:scale(1.05)}
 .hero-bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.3)}
 .hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:40px}
-.hero-awards{text-align:center}
-.hero-badge-text{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.85);line-height:1.5}
-.hero-award-logos{display:flex;gap:8px;justify-content:center;margin-top:6px;font-size:.9rem;opacity:.6}
+.hero-awards{text-align:center;margin-bottom:4px}
+.hero-badge-text{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.85);line-height:1.5}
+.hero-award-logos{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:8px}
+.hero-award-logos img{height:20px;width:auto;object-fit:contain;opacity:.85;filter:brightness(0) invert(1)}
+.award-desktop-only{display:none!important}
 .hero-heading{font-size:clamp(2.8rem,8vw,6.5rem);font-weight:500;color:var(--white);line-height:1.05;letter-spacing:-.04em;font-family:var(--font)}
 .hero-inline-img{display:inline-block;width:clamp(50px,7vw,100px);height:clamp(50px,7vw,100px);border-radius:20%;overflow:hidden;vertical-align:middle;margin:0 4px;background-size:cover;background-position:center}
 .hero-subtitle{font-size:clamp(.95rem,1.8vw,1.25rem);color:rgba(255,255,255,.8);font-weight:400;letter-spacing:-.01em;font-style:italic}
-.hero-platforms{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px 24px;margin-top:16px}
-.hero-platforms span{font-size:.78rem;color:rgba(255,255,255,.65);font-weight:500;letter-spacing:-.01em}
-.hero-platforms .platform-bold{font-weight:700;color:rgba(255,255,255,.85)}
-.hero-platforms img{height:16px;width:auto;opacity:.65;filter:brightness(0) invert(1);object-fit:contain;display:inline-block;vertical-align:middle}
+/* Platform logos: hidden by default, only shown on ultrawide (≥1920px) matching real site 3xl:flex */
+.hero-platforms{display:none}
+@media(min-width:1920px){.hero-platforms{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px 28px;margin-top:20px}
+.hero-platforms img{height:18px;width:auto;opacity:.7;filter:brightness(0) invert(1);object-fit:contain}}
 /* CLIENT LOGO STRIP */
 .clients{padding:40px 28px;overflow:hidden;border-top:1px solid var(--border)}
 .clients-label{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:24px;text-align:center}
