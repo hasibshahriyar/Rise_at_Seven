@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html class="no-js" lang="en">
 
 <head>
@@ -98,6 +98,36 @@
     <script type="module" src="dist/index-C6h8Ze3a.js" crossorigin
         onload="e=new CustomEvent(&#039;vite-script-loaded&#039;, {detail:{path: &#039;src/index.js&#039;}});document.dispatchEvent(e);"></script>
     <link href="dist/index-DDQ8LxYn.css" rel="stylesheet">
+
+    <!-- Mobile animation patch: fixes image wrappers & scroll fades on touch devices -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.matchMedia('(pointer: fine)').matches) return;
+
+        function fixImageWrappers() {
+            document.querySelectorAll('.js-heading, .js-heading-animate').forEach(function(heading) {
+                var fs = parseFloat(window.getComputedStyle(heading).fontSize);
+                var lh = parseFloat(window.getComputedStyle(heading).lineHeight);
+                var size = (lh > 10 ? lh : fs * 1.2);
+                heading.querySelectorAll('.js-image-wrapper').forEach(function(wrapper) {
+                    wrapper.style.width = size + 'px';
+                    wrapper.style.borderRadius = '15%';
+                    wrapper.style.display = 'inline-flex';
+                    wrapper.style.flexShrink = '0';
+                    wrapper.style.overflow = 'hidden';
+                });
+            });
+        }
+
+        var tries = 0;
+        var iv = setInterval(function() {
+            fixImageWrappers();
+            if (++tries >= 15) clearInterval(iv);
+        }, 250);
+
+        window.addEventListener('resize', fixImageWrappers);
+    });
+    </script>
 
     <link rel="shortcut icon" href="dist/favicons/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="dist/favicons/favicon-16x16.png">
