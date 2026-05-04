@@ -48,3 +48,22 @@ if (wt) {
   wt.addEventListener('mousemove', e => { if (!down) return; e.preventDefault(); wt.scrollLeft = sl - (e.pageX - wt.offsetLeft - sx) * 1.5; });
   wt.style.cursor = 'grab';
 }
+
+// Hero random background image on each refresh
+const heroImages = [
+  'images/FirstSection/Emirates-airpline-in-flight.webp',
+  'images/FirstSection/Pooky-Rechargable-Doorstop-Cordless-100-Straight-Empire-Pendant-Silk-Ikat-Shade-in-Black-and-Cream-Atlas-44-Single-chukka-Cordless-95-scaled-1-1.webp',
+  'images/FirstSection/RedBull-Instagram-Post-45.webp',
+  'images/FirstSection/Screenshot-2025-07-01-at-21.36.35.webp',
+  'images/FirstSection/spaseekers.webp'
+];
+function shuffle(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+const lastIndex = parseInt(localStorage.getItem('heroImgIndex') ?? '-1');
+let nextIndex;
+do { nextIndex = Math.floor(Math.random() * heroImages.length); } while (nextIndex === lastIndex);
+localStorage.setItem('heroImgIndex', nextIndex);
+const chosen = heroImages[nextIndex];
+const heroBg = document.getElementById('heroBg');
+const heroInline = document.getElementById('heroInlineImg');
+if (heroBg) heroBg.style.backgroundImage = `url('${chosen}')`;
+if (heroInline) heroInline.style.backgroundImage = `url('${chosen}')`;
