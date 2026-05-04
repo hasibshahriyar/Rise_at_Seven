@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html class="no-js" lang="en">
 
 <head>
@@ -90,14 +90,71 @@
             font-display: swap;
         }
     </style>
+    <!-- Tailwind CSS CDN with project design tokens (replaces dist CSS) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: { preflight: false },
+            theme: {
+                extend: {
+                    colors: {
+                        'grey-50':  '#f7f7f7',
+                        'grey-100': '#efeeec',
+                        'grey-150': '#e9e9e9',
+                        'grey-200': '#bebebe',
+                        'grey-300': '#6a6a6a',
+                        'grey-400': '#282828',
+                        'grey-500': '#1f1f1f',
+                        'grey-600': '#1a1a1a',
+                        'grey-800': '#121212',
+                        'grey-900': '#111212',
+                        'mint':     '#b2f6e3',
+                    },
+                    fontFamily: {
+                        'sans-primary': ['"saans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    fontSize: {
+                        '2xs':   '0.5rem',
+                        '1xs':   '0.675rem',
+                        '5xl':   '3.125rem',
+                        '6xl':   '3.75rem',
+                        '7xl':   '4.6875rem',
+                        '7.5xl': '5.625rem',
+                        '8xl':   '6.25rem',
+                        '8.5xl': '7.5rem',
+                        '9.5xl': '10.5rem',
+                        '10xl':  '13.75rem',
+                    },
+                    height: {
+                        '18': '4.5rem',
+                        '22': '5.5rem',
+                        'screen-fix':     'calc(var(--vh, 1vh) * 100)',
+                        'screen-fix-110': 'calc(var(--vh, 1vh) * 110)',
+                    },
+                    lineHeight: { '0.9': '0.9' },
+                    borderRadius: { '3xl': '1.5rem' },
+                }
+            },
+            plugins: [
+                function({ addVariant }) {
+                    addVariant('pointer-fine', '@media (pointer: fine)');
+                }
+            ]
+        }
+    </script>
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- GSAP â€” must be a global before Alpine initialises -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Alpine Collapse plugin (must come before Alpine) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.14.3/dist/cdn.min.js"></script>
+    <!-- Alpine.js (deferred so HTML is fully parsed before it runs) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
 
-
-
-    <script
-        type="module">!function () { const e = document.createElement("link").relList; if (!(e && e.supports && e.supports("modulepreload"))) { for (const e of document.querySelectorAll('link[rel="modulepreload"]')) r(e); new MutationObserver((e => { for (const o of e) if ("childList" === o.type) for (const e of o.addedNodes) if ("LINK" === e.tagName && "modulepreload" === e.rel) r(e); else if (e.querySelectorAll) for (const o of e.querySelectorAll("link[rel=modulepreload]")) r(o) })).observe(document, { childList: !0, subtree: !0 }) } function r(e) { if (e.ep) return; e.ep = !0; const r = function (e) { const r = {}; return e.integrity && (r.integrity = e.integrity), e.referrerpolicy && (r.referrerPolicy = e.referrerpolicy), "use-credentials" === e.crossorigin ? r.credentials = "include" : "anonymous" === e.crossorigin ? r.credentials = "omit" : r.credentials = "same-origin", r }(e); fetch(e.href, r) } }();</script>
-    <script type="module" src="dist/index-C6h8Ze3a.js" crossorigin
-        onload="e=new CustomEvent(&#039;vite-script-loaded&#039;, {detail:{path: &#039;src/index.js&#039;}});document.dispatchEvent(e);"></script>
-    <link href="dist/index-DDQ8LxYn.css" rel="stylesheet">
 
     <!-- Mobile animation patch: fixes image wrappers & scroll fades on touch devices -->
     <script>
@@ -128,100 +185,7 @@
         window.addEventListener('resize', fixImageWrappers);
     });
     </script>
-
-    <link rel="shortcut icon" href="dist/favicons/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="dist/favicons/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="dist/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="dist/favicons/favicon-48x48.png">
-    <link rel="manifest" href="dist/favicons/manifest.json">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#fff">
-    <meta name="application-name">
-    <link rel="apple-touch-icon" sizes="57x57" href="dist/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="dist/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="dist/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="dist/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="dist/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="dist/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="dist/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="dist/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="167x167" href="dist/favicons/apple-touch-icon-167x167.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="dist/favicons/apple-touch-icon-180x180.png">
-    <link rel="apple-touch-icon" sizes="1024x1024" href="dist/favicons/apple-touch-icon-1024x1024.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-        href="dist/favicons/apple-touch-startup-image-640x1136.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-        href="dist/favicons/apple-touch-startup-image-750x1334.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-        href="dist/favicons/apple-touch-startup-image-828x1792.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
-        href="dist/favicons/apple-touch-startup-image-1125x2436.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
-        href="dist/favicons/apple-touch-startup-image-1242x2208.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
-        href="dist/favicons/apple-touch-startup-image-1242x2688.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-        href="dist/favicons/apple-touch-startup-image-1536x2048.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-        href="dist/favicons/apple-touch-startup-image-1668x2224.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-        href="dist/favicons/apple-touch-startup-image-1668x2388.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-        href="dist/favicons/apple-touch-startup-image-2048x2732.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
-        href="dist/favicons/apple-touch-startup-image-1620x2160.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-        href="dist/favicons/apple-touch-startup-image-1136x640.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-        href="dist/favicons/apple-touch-startup-image-1334x750.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-        href="dist/favicons/apple-touch-startup-image-1792x828.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
-        href="dist/favicons/apple-touch-startup-image-2436x1125.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
-        href="dist/favicons/apple-touch-startup-image-2208x1242.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"
-        href="dist/favicons/apple-touch-startup-image-2688x1242.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-        href="dist/favicons/apple-touch-startup-image-2048x1536.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-        href="dist/favicons/apple-touch-startup-image-2224x1668.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-        href="dist/favicons/apple-touch-startup-image-2388x1668.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-        href="dist/favicons/apple-touch-startup-image-2732x2048.png">
-    <link rel="apple-touch-startup-image"
-        media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
-        href="dist/favicons/apple-touch-startup-image-2160x1620.png">
-    <link rel="icon" type="image/png" sizes="228x228" href="dist/favicons/coast-228x228.png">
-    <meta name="msapplication-TileColor" content="#fff">
-    <meta name="msapplication-TileImage" content="dist/favicons/mstile-144x144.png">
-    <meta name="msapplication-config" content="dist/favicons/browserconfig.xml">
-    <link rel="yandex-tableau-widget" href="dist/favicons/yandex-browser-manifest.json">
+    <!-- favicons omitted -->
 
     <script src="https://kit.fontawesome.com/711261502f.js" crossorigin="anonymous"></script>
     <style>
@@ -11573,10 +11537,11 @@
     </main>
 
 
-    <script src="/player.vimeo.com/api/player.js" defer></script>
+    <script src="https://player.vimeo.com/api/player.js" defer></script>
 
     <script
         type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","author":{"@id":"https://riseatseven.com#identity"},"copyrightHolder":{"@id":"https://riseatseven.com#identity"},"copyrightYear":"2025","creator":{"@id":"#creator"},"dateCreated":"2025-05-23T15:31:03+01:00","dateModified":"2026-04-28T11:54:32+01:00","datePublished":"2025-05-23T15:32:00+01:00","description":"Rise at Seven is a search-first content marketing agency with offices in London, Sheffield, Manchester & New York that specialises in SEO, Digital PR, content marketing and Influencer.","headline":"Rise at Seven | Award Winning Search-First Content Marketing Agency","image":{"@type":"ImageObject","url":"https://rise-atseven.transforms.svdcdn.com/production/images/IMG_5087.JPG?w=2500&h=1667&q=100&auto=format&fit=crop&crop=focalpoint&fp-x=0.6975&fp-y=0.4777&dm=1753791050&s=6f9c4e427ec3afc2794ccb92f006af06"},"inLanguage":"en-gb","mainEntityOfPage":"https://riseatseven.com/","name":"Rise at Seven","publisher":{"@id":"#creator"},"url":"https://riseatseven.com/"},{"@id":"https://riseatseven.com#identity","@type":"Organization","name":"Rise at Seven","url":"https://riseatseven.com"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://riseatseven.com/","name":"Home","position":1}],"name":"Breadcrumbs"}]}</script>
+    <script src="scripts.js" defer></script>
 </body>
 
 </html><!-- Cached by Blitz on 2026-05-02T23:28:56+01:00 --><!-- Served by Blitz on 2026-05-03T13:48:25+01:00 -->
