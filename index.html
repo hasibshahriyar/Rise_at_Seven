@@ -4914,7 +4914,6 @@
                                 },
                                 scrub: true,
                                 pin: true,
-                                pinSpacing: false,
                                 onEnter: () =&gt; {
                                     _self.$dispatch(&#039;component-header&#039;, { hideHeaderOverride: true });
                                 },
@@ -4928,10 +4927,6 @@
                                     _self.$dispatch(&#039;component-header&#039;, { hideHeaderOverride: true });
                                 },
                             },
-                        });
-
-                        gsap.set(trigger, {
-                            height: `${images.offsetHeight}px`
                         });
                     }
                 });
