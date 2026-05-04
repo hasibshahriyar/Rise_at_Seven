@@ -678,9 +678,9 @@
 
                 _self.$watch(&#039;mobileMenu&#039;, (value) =&gt; {
                     if (value) {
-                        document.body.classList.add(&#039;overflow-hidden&#039;);
+                        document.documentElement.classList.add(&#039;overflow-hidden&#039;);
                     } else {
-                        document.body.classList.remove(&#039;overflow-hidden&#039;);
+                        document.documentElement.classList.remove(&#039;overflow-hidden&#039;);
                     }
                 });
 
@@ -754,7 +754,7 @@
                     </a>
                 </div>
 
-                <div class="w-full absolute lg:fixed top-0 left-0 z-50 flex transition duration-700 h-18 | lg:h-22 lg:p-3"
+                <div class="w-full fixed top-0 left-0 z-50 flex transition duration-700 h-18 | lg:h-22 lg:p-3"
                     x-bind:class="{
             '-translate-y-full' : hideHeader || hideHeaderOverride,
         }">
