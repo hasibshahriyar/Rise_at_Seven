@@ -58,6 +58,7 @@ body {
     background-color: var(--color-grey-100);
     color: var(--color-grey-900);
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
 }
 
 a { color: inherit; text-decoration: inherit; }
