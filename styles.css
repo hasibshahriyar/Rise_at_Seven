@@ -3,6 +3,14 @@
    Custom theme + utility overrides
    ========================================================= */
 
+/* --- Aspect-ratio utilities missing from Tailwind CDN v3 --- */
+/* Tailwind CDN requires [brackets] for arbitrary ratios.      */
+/* These fraction-notation classes are used throughout the     */
+/* HTML (scraped from original) and need manual CSS.           */
+.aspect-20\/9 { aspect-ratio: 20 / 9; }
+.aspect-4\/3  { aspect-ratio: 4 / 3; }
+.aspect-1\/1  { aspect-ratio: 1 / 1; }
+
 /* --- Custom CSS Variables (Design Tokens) --- */
 :root {
     --color-grey-50:  #f7f7f7;
