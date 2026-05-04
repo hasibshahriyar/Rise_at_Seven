@@ -51,14 +51,12 @@ html, :host {
     line-height: 1.5;
     font-family: var(--font-sans-primary);
     -webkit-tap-highlight-color: transparent;
-    overflow-x: hidden;
 }
 
 body {
     font-family: var(--font-sans-primary);
     background-color: var(--color-grey-100);
     color: var(--color-grey-900);
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
 
