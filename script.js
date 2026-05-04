@@ -53,15 +53,24 @@ if (wt) {
   wt.addEventListener('mouseup', () => { down = false; wt.style.cursor = 'grab'; });
   wt.addEventListener('mousemove', e => { if (!down) return; e.preventDefault(); wt.scrollLeft = sl - (e.pageX - wt.offsetLeft - sx) * 1.5; });
   wt.style.cursor = 'grab';
+  // Touch drag support
+  let tStartX, tScrollLeft;
+  wt.addEventListener('touchstart', e => { tStartX = e.touches[0].pageX; tScrollLeft = wt.scrollLeft; }, { passive: true });
+  wt.addEventListener('touchmove', e => { wt.scrollLeft = tScrollLeft - (e.touches[0].pageX - tStartX) * 1.2; }, { passive: true });
 }
 
-// Hero random background image on each refresh
+// Hero — local images (FirstSection + CDN copies)
 const heroImages = [
   'images/FirstSection/Emirates-airpline-in-flight.webp',
   'images/FirstSection/Pooky-Rechargable-Doorstop-Cordless-100-Straight-Empire-Pendant-Silk-Ikat-Shade-in-Black-and-Cream-Atlas-44-Single-chukka-Cordless-95-scaled-1-1.webp',
   'images/FirstSection/RedBull-Instagram-Post-45.webp',
   'images/FirstSection/Screenshot-2025-07-01-at-21.36.35.webp',
-  'images/FirstSection/spaseekers.webp'
+  'images/FirstSection/spaseekers.webp',
+  'images/cdn/Screenshot-2025-06-23-at-23.14.49.webp',
+  'images/cdn/d4df0d30-d590-4e94-9056-9491f4beacba.webp',
+  'images/cdn/0B5A6875.webp',
+  'images/cdn/Screenshot-2025-06-23-at-22.39.35.webp',
+  'images/cdn/IMG_4280-2.webp',
 ];
 function shuffle(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
 const lastIndex = parseInt(localStorage.getItem('heroImgIndex') ?? '-1');
@@ -73,3 +82,11 @@ const heroBg = document.getElementById('heroBg');
 const heroInline = document.getElementById('heroInlineImg');
 if (heroBg) heroBg.style.backgroundImage = `url('${chosen}')`;
 if (heroInline) heroInline.style.backgroundImage = `url('${chosen}')`;
+
+// Re-observe dynamically added .fade-in elements (rendered by data.js)
+requestAnimationFrame(() => {
+  document.querySelectorAll('.fade-in:not([data-observed])').forEach(el => {
+    el.setAttribute('data-observed','1');
+    obs.observe(el);
+  });
+});
