@@ -536,3 +536,20 @@ h1, h2, h3, h4, h5, h6 {
         /* Width will be set by JS after font loads */
     }
 }
+
+/* =========================================================
+   Circle-mask hover reveal (blog cards & featured work overlay)
+   ========================================================= */
+.circle-mask {
+    clip-path: circle(0% at 50% 120%);
+    transition-property: clip-path;
+    transition-timing-function: var(--ease-smooth);
+    transition-duration: 0.6s;
+}
+
+@media (pointer: fine) {
+    .circle-mask-container:hover .circle-mask,
+    .circle-mask-container.is-active .circle-mask {
+        clip-path: circle(85% at 50% 70%);
+    }
+}

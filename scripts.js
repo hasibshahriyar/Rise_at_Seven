@@ -343,3 +343,47 @@ function initAnnouncementBar() {
     }, { passive: true });
 }
 document.addEventListener('DOMContentLoaded', initAnnouncementBar);
+
+
+/* =========================================================
+   Footer reveal animation
+   — background height grows as you scroll into the footer
+   — content fades in on desktop; both set immediately on mobile
+   ========================================================= */
+function initFooterAnimation() {
+    const footer = document.querySelector('.js-footer');
+    const footerBackground = document.querySelector('.js-footer-background');
+    const footerContent = document.querySelector('.js-footer-content');
+    if (!footer || !footerBackground || !footerContent) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add('(pointer: fine)', () => {
+        ScrollTrigger.create({
+            trigger: footer,
+            start: 'top 100%',
+            end: 'bottom bottom',
+            onUpdate: (self) => {
+                gsap.set(footerBackground, { height: `${self.progress * 100}%` });
+            },
+        });
+
+        gsap.set(footerContent, { opacity: 0 });
+        gsap.to(footerContent, {
+            opacity: 1,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: footer,
+                start: 'top 80%',
+                end: 'bottom 110%',
+                scrub: 1,
+            },
+        });
+    });
+
+    mm.add('(pointer: coarse)', () => {
+        gsap.set(footerBackground, { height: '100%' });
+        gsap.set(footerContent, { opacity: 1 });
+    });
+}
+document.addEventListener('DOMContentLoaded', initFooterAnimation);
