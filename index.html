@@ -759,13 +759,13 @@
             '-translate-y-full' : hideHeader || hideHeaderOverride,
         }">
 
-                    <div class="w-full h-svh fixed top-0 left-0 z-50 opacity-0 pointer-events-none transition duration-500 | js-modal | lg:hidden"
+                    <div class="w-full h-svh fixed top-0 left-0 z-50 opacity-0 pointer-events-none transition p-2 backdrop-blur-sm duration-1000 | js-modal | lg:hidden"
                         x-bind:class="{
         'pointer-events-none opacity-0': !mobileMenu,
         'pointer-events-auto opacity-100': mobileMenu
     }">
 
-                        <div class="w-full h-full bg-grey-900 px-4 py-4 flex flex-col items-start justify-between">
+                        <div class="w-full h-full bg-grey-900/80 rounded-3xl px-4 py-2.5 flex flex-col items-start justify-between">
 
                             <div class="w-full grid gap-y-10">
 
