@@ -193,7 +193,8 @@
     <meta name="msapplication-config" content="dist/favicons/browserconfig.xml">
     <link rel="yandex-tableau-widget" href="dist/favicons/yandex-browser-manifest.json">
 
-    <script src="https://kit.fontawesome.com/711261502f.js" crossorigin="anonymous"></script><style>
+    <script src="https://kit.fontawesome.com/711261502f.js" crossorigin="anonymous"></script>
+    <style>
         [x-cloak] {
             display: none;
         }
@@ -209,7 +210,7 @@
     <script>!function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
                 n.callMethod ?
-                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
             }; if (!f._fbq) f._fbq = n;
             n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
             t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
@@ -740,20 +741,19 @@
                 </div>
 
 
-                <div class="w-full fixed top-0 left-0 z-50 flex transition duration-700 h-18 | lg:h-22 lg:p-3"
+                <div class="w-full absolute lg:fixed top-0 left-0 z-50 flex transition duration-700 h-18 | lg:h-22 lg:p-3"
                     x-bind:class="{
             '-translate-y-full' : hideHeader || hideHeaderOverride,
         }">
 
 
-                    <div class="w-full h-svh fixed top-0 left-0 z-50 opacity-0 pointer-events-none transition p-2 backdrop-blur-sm duration-1000 | js-modal | lg:hidden"
+                    <div class="w-full h-svh fixed top-0 left-0 z-50 opacity-0 pointer-events-none transition duration-500 | js-modal | lg:hidden"
                         x-bind:class="{
         'pointer-events-none opacity-0': !mobileMenu,
         'pointer-events-auto opacity-100': mobileMenu
     }">
 
-                        <div
-                            class="w-full h-full bg-grey-900/80 rounded-3xl px-4 py-2.5 flex flex-col items-start justify-between">
+                        <div class="w-full h-full bg-grey-900 px-4 py-4 flex flex-col items-start justify-between">
 
                             <div class="w-full grid gap-y-10">
 
@@ -2563,9 +2563,9 @@
                             }">
 
 
-                        <a href="https://riseatseven.com/" class="flex w-32 ml-2 | md:w-40 | text-white" x-bind:class="{
-                        'text-white' : hideHeaderBackground,
-                        'text-black' : !hideHeaderBackground,
+                        <a href="https://riseatseven.com/" class="flex w-32 ml-2 | md:w-40 | text-grey-900"
+                            x-bind:class="{
+                        'text-grey-900' : true,
                     }">
 
 
@@ -2924,7 +2924,7 @@
                     'transform rotate-45 translate-y-1' : mobileMenu,
                     'transform rotate-0' : !mobileMenu
                 }">
-                                                <div class="w-full h-0.5 bg-white">
+                                                <div class="w-full h-0.5 bg-grey-900">
                                                 </div>
 
                                             </div>
@@ -2933,7 +2933,7 @@
                     'transform -rotate-45 -translate-y-1' : mobileMenu,
                     'transform rotate-0' : !mobileMenu
                 }">
-                                                <div class="w-full h-0.5 bg-white">
+                                                <div class="w-full h-0.5 bg-grey-900">
                                                 </div>
 
                                             </div>
@@ -3058,18 +3058,13 @@
 
                         <div class="hidden">
 
-                            <img src="images/cdn/unnamed-6.webp"
-                                class="js-random-image-2412">
-                            <img src="images/cdn/RedBull-Instagram-Post-45.webp"
-                                class="js-random-image-2412">
-                            <img src="images/cdn/Emirates-airpline-in-flight.webp"
-                                class="js-random-image-2412">
+                            <img src="images/cdn/unnamed-6.webp" class="js-random-image-2412">
+                            <img src="images/cdn/RedBull-Instagram-Post-45.webp" class="js-random-image-2412">
+                            <img src="images/cdn/Emirates-airpline-in-flight.webp" class="js-random-image-2412">
                             <img src="E:/Job/riseatseven-clone/images/cdn/Pooky-Rechargable-Doorstop-Cordless-100-Straight-Empire-Pendant-Silk-Ikat-Shade-in-Black-and-Cream-Atlas-44-Single-chukka-Cordless-95-scaled-1-1.webp"
                                 class="js-random-image-2412">
-                            <img src="images/cdn/Screenshot-2025-07-01-at-21.36.35.webp"
-                                class="js-random-image-2412">
-                            <img src="images/cdn/spaseekers.webp"
-                                class="js-random-image-2412">
+                            <img src="images/cdn/Screenshot-2025-07-01-at-21.36.35.webp" class="js-random-image-2412">
+                            <img src="images/cdn/spaseekers.webp" class="js-random-image-2412">
 
                         </div>
 
@@ -3116,7 +3111,8 @@
                                     <p
                                         class="text-sm font-sans-primary leading-normal text-pretty mb-5 | lg:text-base text-white mb-0!">
                                         <strong class="font-medium">4 Global Offices serving</strong><br><strong
-                                            class="font-medium">UK, USA (New York) &amp; EU</strong></p>
+                                            class="font-medium">UK, USA (New York) &amp; EU</strong>
+                                    </p>
                                 </div>
 
 
@@ -11554,9 +11550,3 @@
 </body>
 
 </html><!-- Cached by Blitz on 2026-05-02T23:28:56+01:00 --><!-- Served by Blitz on 2026-05-03T13:48:25+01:00 -->
-
-
-
-
-
-
