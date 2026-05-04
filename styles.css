@@ -42,19 +42,21 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
 .hamburger.active span:last-child{transform:rotate(-45deg) translate(3px,-3px)}
 
 /* MOBILE MENU */
-.mobile-menu{position:fixed;inset:0;width:100%;height:100dvh;z-index:50;opacity:0;pointer-events:none;transition:opacity 1s var(--ease);padding:8px}
+.mobile-menu{position:fixed;inset:0;width:100%;height:100dvh;z-index:50;opacity:0;pointer-events:none;transition:opacity .4s var(--ease);padding:8px}
 .mobile-menu.open{opacity:1;pointer-events:auto}
-.mobile-inner{width:100%;height:100%;background:rgba(17,17,17,.85);border-radius:var(--radius);padding:20px 16px 24px;display:flex;flex-direction:column;backdrop-filter:blur(4px)}
+.mobile-inner{width:100%;height:100%;background:rgba(17,17,17,.88);border-radius:var(--radius);padding:20px 20px 24px;display:flex;flex-direction:column;backdrop-filter:blur(8px)}
 .mobile-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
-.mobile-nav{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:4px}
-.mob-link{font-size:2.2rem;font-weight:500;letter-spacing:-.03em;line-height:1.1;color:var(--white);padding:4px 0;display:flex;align-items:center;justify-content:space-between}
-.mob-toggle{width:24px;height:24px;border-radius:50%;border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-size:.6rem;transition:transform .3s}
-.mob-toggle.open{transform:rotate(180deg)}
-.mob-sub{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
-.mob-sub.open{max-height:400px}
-.mob-sub a{display:block;font-size:1.15rem;font-weight:500;padding:4px 0;color:var(--white);letter-spacing:-.02em}
-.mobile-bottom{margin-top:auto;padding-top:20px}
-.mobile-bottom .btn-cta{width:100%;justify-content:center;padding:14px;font-size:1rem}
+.mob-close{font-size:1.4rem;color:var(--white);background:none;border:none;cursor:pointer;line-height:1;padding:4px;opacity:.85}
+.mobile-nav{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:0}
+.mob-link{font-size:2.1rem;font-weight:500;letter-spacing:-.03em;line-height:1.15;color:var(--white);padding:6px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.mob-toggle{width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s}
+.mob-toggle svg{width:12px;height:12px;stroke:var(--white);fill:none;stroke-width:2;transition:transform .3s}
+.mob-toggle.open svg{transform:rotate(180deg)}
+.mob-sub{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);padding-left:0}
+.mob-sub.open{max-height:500px}
+.mob-sub a{display:block;font-size:1rem;font-weight:400;padding:5px 0;color:rgba(255,255,255,.75);letter-spacing:-.01em}
+.mobile-bottom{margin-top:auto;padding-top:16px}
+.mobile-bottom .btn-cta{width:100%;justify-content:center;padding:16px;font-size:1rem;background:var(--white);color:#111;border-radius:999px}
 
 /* HERO */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;overflow:hidden;border-radius:0 0 var(--radius) var(--radius);margin:0 10px}
@@ -184,17 +186,17 @@ button{cursor:pointer;border:none;background:none;font-family:inherit;color:inhe
   .hero-heading{font-size:clamp(2rem,10vw,3.2rem)}
   .hero-inline-img{width:40px;height:40px;border-radius:10px}
   .hero-subtitle{font-size:.85rem}
-  .hero-platforms{gap:10px;margin-top:8px}
-  .hero-platforms span{font-size:.65rem}
-  .hero-bottom{flex-direction:column;gap:12px;padding:16px}
-  .hero-bottom-right{text-align:left}
+  .hero-platforms{display:none}
+  .hero-bottom{flex-direction:column;gap:0;padding:16px 20px}
+  .hero-bottom-left{display:none}
+  .hero-bottom-right{text-align:right}
   .work-section{padding:60px 0 60px 16px}
   .work-card{flex:0 0 270px}
   .footer-grid{grid-template-columns:1fr}
   .section-head{flex-direction:column;align-items:flex-start}
   .nl-form{flex-direction:column;border-radius:16px}
   .announce{margin:8px 8px 0;font-size:.75rem;padding:8px 12px}
-  .mob-link{font-size:1.8rem}
+  .mob-link{font-size:2rem}
 }
 .fade-in{opacity:0;transform:translateY(20px);transition:all .7s var(--ease)}
 .fade-in.visible{opacity:1;transform:translateY(0)}

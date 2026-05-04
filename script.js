@@ -19,6 +19,12 @@ hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
   document.body.style.overflow = open ? 'hidden' : '';
 });
+const mobClose = document.getElementById('mobClose');
+if (mobClose) mobClose.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('active');
+  document.body.style.overflow = '';
+});
 
 // Scroll animations
 const obs = new IntersectionObserver(entries => {
