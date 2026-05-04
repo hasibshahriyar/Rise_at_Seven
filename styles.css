@@ -553,3 +553,12 @@ h1, h2, h3, h4, h5, h6 {
         clip-path: circle(85% at 50% 70%);
     }
 }
+
+/* =========================================================
+   Agency Behind logo carousel — centre each logo in its slide
+   ========================================================= */
+.js-carousel-74 .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
