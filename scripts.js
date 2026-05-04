@@ -179,21 +179,87 @@ function initScrollAnimations() {
 
     // ── Desktop (pointer:fine): full GSAP reveal animations ──
     mm.add('(pointer: fine)', () => {
-        document.querySelectorAll('.js-heading-animate').forEach(el => {
-            gsap.fromTo(el,
-                { opacity: 0, y: 40 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 88%',
-                    }
-                }
-            );
+
+        // First pass: size image wrappers + add word spacing for ALL headings
+        document.querySelectorAll('.js-heading-animate, .js-heading').forEach(heading => {
+            const lh = parseFloat(window.getComputedStyle(heading).lineHeight);
+            const fs = parseFloat(window.getComputedStyle(heading).fontSize);
+            const size = lh > 10 ? lh : fs * 1.1;
+            const gap  = `${size * 0.15}px`;
+
+            heading.querySelectorAll('.js-word').forEach(word => {
+                gsap.set(word, { marginRight: gap });
+            });
+            heading.querySelectorAll('.js-image-wrapper').forEach(wrapper => {
+                gsap.set(wrapper, { width: size + 'px', borderRadius: '15%', marginRight: gap });
+            });
         });
+
+        // Second pass: staggered word-reveal for animated headings
+        document.querySelectorAll('.js-heading-animate').forEach(heading => {
+            const delay = parseFloat(heading.dataset.delay) || 0.2;
+            const words = Array.from(heading.querySelectorAll('.js-word'));
+
+            if (words.length) {
+                // Words start below the overflow-hidden clip area and slide up
+                gsap.fromTo(words,
+                    { y: 48, opacity: 0 },
+                    {
+                        y: 0, opacity: 1,
+                        duration: 0.55,
+                        ease: 'power4.out',
+                        stagger: 0.06,
+                        delay,
+                        scrollTrigger: { trigger: heading, start: 'top 87%' }
+                    }
+                );
+                // Image wrappers expand in after words
+                const wrappers = Array.from(heading.querySelectorAll('.js-image-wrapper'));
+                if (wrappers.length) {
+                    const lh = parseFloat(window.getComputedStyle(heading).lineHeight);
+                    const fs = parseFloat(window.getComputedStyle(heading).fontSize);
+                    const size = lh > 10 ? lh : fs * 1.1;
+                    gsap.fromTo(wrappers,
+                        { width: 0, opacity: 0 },
+                        {
+                            width: size + 'px', opacity: 1,
+                            duration: 0.7,
+                            ease: 'power4.out',
+                            delay: delay + words.length * 0.06 + 0.1,
+                            scrollTrigger: { trigger: heading, start: 'top 87%' }
+                        }
+                    );
+                }
+            } else {
+                gsap.fromTo(heading,
+                    { opacity: 0, y: 40 },
+                    {
+                        opacity: 1, y: 0,
+                        duration: 0.8, ease: 'power3.out', delay,
+                        scrollTrigger: { trigger: heading, start: 'top 88%' }
+                    }
+                );
+            }
+        });
+
+        // Resize: re-apply word spacing
+        const _updateWordSpacing = () => {
+            document.querySelectorAll('.js-heading-animate, .js-heading').forEach(heading => {
+                const lh = parseFloat(window.getComputedStyle(heading).lineHeight);
+                const fs = parseFloat(window.getComputedStyle(heading).fontSize);
+                const size = lh > 10 ? lh : fs * 1.1;
+                const gap  = `${size * 0.15}px`;
+                heading.querySelectorAll('.js-word').forEach(w => gsap.set(w, { marginRight: gap }));
+                heading.querySelectorAll('.js-image-wrapper').forEach(wr =>
+                    gsap.set(wr, { width: size + 'px', marginRight: gap })
+                );
+            });
+        };
+        let _resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(_resizeTimer);
+            _resizeTimer = setTimeout(_updateWordSpacing, 120);
+        }, { passive: true });
     });
 }
 document.addEventListener('DOMContentLoaded', () => {
