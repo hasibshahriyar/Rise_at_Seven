@@ -478,11 +478,33 @@ export default function Navbar() {
 
   // ── Effect: sync announcement bar text/link from live site ─────
   useEffect(() => {
+    const normalizeAnnouncementText = (text) => {
+      const compact = text.replace(/\s+/g, ' ').trim();
+
+      // Some mirrored sources include the same announcement phrase multiple times.
+      const segments = compact
+        .split('🚨')
+        .map((s) => s.trim())
+        .filter(Boolean);
+
+      if (segments.length > 1) {
+        const normalizedSet = new Set(
+          segments.map((s) => s.replace(/\s+/g, ' ').toLowerCase()),
+        );
+
+        if (normalizedSet.size === 1) {
+          return `🚨 ${segments[0]}`;
+        }
+      }
+
+      return compact;
+    };
+
     const parseLiveAnnouncement = (raw) => {
       const lineMatch = raw.match(/\[\s*(🚨[^\]]+)\]\((https?:\/\/riseatseven\.com\/[^)]+)\)/i);
       if (!lineMatch) return null;
 
-      const text = lineMatch[1].replace(/\s+/g, ' ').trim();
+      const text = normalizeAnnouncementText(lineMatch[1]);
       const href = lineMatch[2].trim();
       if (!text || !href) return null;
 
