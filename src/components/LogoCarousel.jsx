@@ -1,51 +1,26 @@
-import { useRef } from 'react';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 
-gsap.registerPlugin(ScrollTrigger);
-
-// Slide definitions — all image-based
+// Real-site order: 8 inline SVG logos + 4 image logos = 12 total.
 const SLIDES = [
-  { type: 'img', id: 'logos1', src: '/images/Logos_2026-04-23-095313_xfhk.webp', alt: 'Client logos' },
-  { type: 'img', id: 'cdnA', src: '/images/Logos/Client/Black/01J76SW385WN4X1CBJWJV7QSAP.webp', alt: 'Client logo' },
-  { type: 'img', id: 'sn', src: '/images/SN.webp', alt: 'SN' },
-  { type: 'img', id: 'logos2', src: '/images/Logos_2026-04-23-101020_frxy.webp', alt: 'Client logos' },
-  { type: 'img', id: 'redbull', src: '/images/Logos/Client/Black/red-bull-logo-black.webp', alt: 'Red Bull' },
-  { type: 'img', id: 'untitled', src: '/images/Logos/Client/Black/Untitled-design.webp', alt: 'Client logo' },
-  { type: 'img', id: 'logos1b', src: '/images/Logos_2026-04-23-095313_xfhk.webp', alt: 'Client logos' },
-  { type: 'img', id: 'cdnAb', src: '/images/Logos/Client/Black/01J76SW385WN4X1CBJWJV7QSAP.webp', alt: 'Client logo' },
-  { type: 'img', id: 'snb', src: '/images/SN.webp', alt: 'SN' },
+  { id: 'ninja', src: '/images/Logos/Client/Black/logo-ninja.svg', alt: 'SharkNinja' },
+  { id: 'brand-01j76', src: '/images/Logos/Client/Black/01J76SW385WN4X1CBJWJV7QSAP.webp', alt: 'Client logo' },
+  { id: 'sn', src: '/images/Logos/Client/Black/SN.webp', alt: 'SN' },
+  { id: 'kroger', src: '/images/Logos/Client/Black/logo-kroger.svg', alt: 'Kroger' },
+  { id: 'redbull', src: '/images/Logos/Client/Black/red-bull-logo-black.webp', alt: 'Red Bull' },
+  { id: 'depop', src: '/images/Logos/Client/Black/logo-depop.svg', alt: 'Depop' },
+  { id: 'untitled', src: '/images/Logos/Client/Black/Untitled-design.webp', alt: 'Client logo' },
+  { id: 'hubspot', src: '/images/Logos/Client/Black/logo-hubspot.svg', alt: 'HubSpot' },
+  { id: 'boxxo', src: '/images/Logos/Client/Black/logo-boxxo.svg', alt: 'Client logo' },
+  { id: 'sky', src: '/images/Logos/Client/Black/logo-sky.svg', alt: 'Sky' },
+  { id: 'asos', src: '/images/Logos/Client/Black/logo-asos.svg', alt: 'ASOS' },
+  { id: 'rtb', src: '/images/Logos/Client/Black/logo-rtb.svg', alt: 'RTB House' },
 ];
 
 export default function LogoCarousel() {
-  const containerRef = useRef(null);
-  const sectionRef = useRef(null);
-
-  useGSAP(() => {
-    const mm = gsap.matchMedia();
-    mm.add('(pointer: fine)', () => {
-      gsap.to(containerRef.current, {
-        xPercent: -5,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 100%',
-          end: 'bottom -100%',
-          scrub: true,
-        },
-      });
-    });
-    mm.add('(pointer: coarse)', () => {
-      gsap.set(containerRef.current, { xPercent: 0 });
-    });
-    return () => mm.revert();
-  }, { scope: sectionRef });
-
   return (
-    <section className="w-full pt-6 xl:pt-12 overflow-hidden" ref={sectionRef}>
+    <section className="w-full pt-6 xl:pt-12 overflow-hidden">
       <div className="w-full px-4 md:px-7">
         <div className="grid grid-cols-20 w-full gap-y-2">
 
@@ -61,43 +36,35 @@ export default function LogoCarousel() {
             className="relative w-full col-span-20 md:col-span-16 lg:col-span-17 xl:col-span-18"
           >
             <div className="w-full relative overflow-hidden z-0">
-              <div
-                className="flex relative z-0 overflow-hidden w-[120vw]"
-                ref={containerRef}
-              >
+              <div className="flex relative z-0 overflow-hidden w-[120vw]">
                 <Swiper
                   modules={[Autoplay]}
-                  slidesPerView={3}
-                  speed={7000}
-                  autoplay={{ delay: 0, disableOnInteraction: false }}
+                  slidesPerView={2.6}
+                  speed={6500}
+                  autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false }}
                   loop={true}
+                  allowTouchMove={false}
                   className="w-full !ease-linear"
                   breakpoints={{
-                    640: { slidesPerView: 2.5 },
-                    768: { slidesPerView: 5 },
-                    1024: { slidesPerView: 6 },
-                    1440: { slidesPerView: 7.5 },
-                    1920: { slidesPerView: 8.5 },
+                    640: { slidesPerView: 4 },
+                    768: { slidesPerView: 5.5 },
+                    1024: { slidesPerView: 6.5 },
+                    1440: { slidesPerView: 8 },
+                    1920: { slidesPerView: 9 },
                   }}
                 >
                   {SLIDES.map((slide) => (
                     <SwiperSlide key={slide.id}>
                       <div className="w-20 py-5 relative lg:w-24">
                         <div className="w-full h-full relative">
-                          {slide.type === 'svg' ? (
-                            <div className="aspect-20/9 text-grey-900">
-                              {slide.component}
-                            </div>
-                          ) : (
-                            <div className="aspect-20/9 w-full h-full relative">
-                              <img
-                                src={slide.src}
-                                alt={slide.alt}
-                                className="w-full h-full object-contain absolute inset-0 transition-opacity"
-                                loading="lazy"
-                              />
-                            </div>
-                          )}
+                          <div className="aspect-20/9 w-full h-full relative">
+                            <img
+                              src={slide.src}
+                              alt={slide.alt}
+                              className="w-full h-full object-contain absolute inset-0 transition-opacity"
+                              loading="lazy"
+                            />
+                          </div>
                         </div>
                       </div>
                     </SwiperSlide>
