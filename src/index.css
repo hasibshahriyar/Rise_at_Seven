@@ -201,17 +201,22 @@
 /* Real-site style layered side blur for logo carousel edges. */
 .section-blur {
   position: absolute;
-  top: 50%;
-  bottom: auto;
-  transform: translateY(-50%);
+  top: 0;
   z-index: 20;
   pointer-events: none;
   width: 7rem;
-  height: 4.75rem;
+  height: 100%;
+}
+
+@media (min-width: 1024px) {
+  .section-blur {
+    width: 15rem;
+  }
 }
 
 .section-blur--left {
   left: -2.5rem;
+  rotate: 180deg;
 }
 
 .section-blur--right {
@@ -222,6 +227,20 @@
   position: absolute;
   inset: 0;
   z-index: var(--index, 0);
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent calc(var(--index) * calc((100 / var(--blurs)) * 1%)),
+    black calc((var(--index) + 1) * calc((100 / var(--blurs)) * 1%)),
+    black calc((var(--index) + 2) * calc((100 / var(--blurs)) * 1%)),
+    transparent calc((var(--index) + 3) * calc((100 / var(--blurs)) * 1%))
+  );
+  mask: linear-gradient(
+    90deg,
+    transparent calc(var(--index) * calc((100 / var(--blurs)) * 1%)),
+    black calc((var(--index) + 1) * calc((100 / var(--blurs)) * 1%)),
+    black calc((var(--index) + 2) * calc((100 / var(--blurs)) * 1%)),
+    transparent calc((var(--index) + 3) * calc((100 / var(--blurs)) * 1%))
+  );
   -webkit-backdrop-filter: blur(calc(var(--index, 0) * 2px * var(--blur, 1)));
   backdrop-filter: blur(calc(var(--index, 0) * 2px * var(--blur, 1)));
 }

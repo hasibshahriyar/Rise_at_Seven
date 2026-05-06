@@ -36,8 +36,6 @@ const POSTS = [
   },
 ];
 
-const HAS_EXTRA_POSTS = POSTS.length > 3;
-
 function PostCard({ post }) {
   return (
     <a
@@ -47,7 +45,6 @@ function PostCard({ post }) {
       onMouseLeave={() => window.dispatchEvent(new CustomEvent('component-cursor', { detail: { active: false, icon: false } }))}
     >
       <div className="w-full grid">
-        {/* Category badge overlay */}
         <div className="col-start-1 row-start-1 z-20 p-3">
           <div className="flex flex-wrap gap-1">
             <div className="inline-flex items-center font-sans-primary font-medium tracking-tight leading-none rounded-full text-sm gap-x-2 px-3 py-1 min-h-7 xl:min-h-8 xl:py-1.5 xl:text-base text-white bg-white/20 backdrop-blur-sm">
@@ -55,17 +52,18 @@ function PostCard({ post }) {
             </div>
           </div>
         </div>
-        {/* Blurred image with circle-mask hover reveal (top layer) */}
+
         <div className="col-start-1 row-start-1 z-10 relative rounded-2xl overflow-hidden aspect-square lg:rounded-3xl">
           <div className="w-full h-full transition blur-md duration-1000 scale-[1.2] circle-mask">
             <img src={post.image} alt="" className="h-full w-full object-cover absolute top-0 left-0" loading="lazy" />
           </div>
         </div>
-        {/* Background image (shown normally beneath) */}
+
         <div className="col-start-1 row-start-1 aspect-square relative rounded-2xl overflow-hidden lg:rounded-3xl">
           <img src={post.image} alt="" className="h-full w-full object-cover absolute top-0 left-0" loading="lazy" />
         </div>
       </div>
+
       <div className="flex flex-col items-start gap-y-3">
         <div className="flex items-start gap-1 mt-1">
           <div className="inline-flex items-center font-sans-primary font-medium tracking-tight leading-none rounded-full text-sm gap-x-2 px-3 py-1 min-h-7 xl:min-h-8 xl:py-1.5 xl:text-base text-grey-300 bg-white">
@@ -76,11 +74,13 @@ function PostCard({ post }) {
             </div>
             <div>{post.author}</div>
           </div>
+
           <div className="inline-flex items-center font-sans-primary font-medium tracking-tight leading-none rounded-full text-sm gap-x-2 px-3 py-1 min-h-7 xl:min-h-8 xl:py-1.5 xl:text-base text-grey-300 bg-white">
             <i className="fa-sharp fa-regular fa-stopwatch" />
             <div>{post.readTime}</div>
           </div>
         </div>
+
         <h2 className="inline-flex flex-wrap text-balance text-left text-grey-900 text-2xl/none xl:text-3xl/none font-sans-primary font-medium tracking-tight">
           {post.title}
         </h2>
@@ -102,10 +102,10 @@ export default function WhatsNew() {
       if (!words.length) return;
       const lh = h2 ? parseFloat(window.getComputedStyle(h2).lineHeight) : words[0].offsetHeight;
       const h = lh > 0 ? lh : words[0].offsetHeight;
-      imageWrappers.forEach(wrapper => {
-        wrapper.style.height = h + 'px';
-        wrapper.style.width = h + 'px';
-        wrapper.style.borderRadius = (h * 0.15) + 'px';
+      imageWrappers.forEach((wrapper) => {
+        wrapper.style.height = `${h}px`;
+        wrapper.style.width = `${h}px`;
+        wrapper.style.borderRadius = `${h * 0.15}px`;
       });
     }
 
@@ -114,23 +114,24 @@ export default function WhatsNew() {
       const lh = h2 ? parseFloat(window.getComputedStyle(h2).lineHeight) : 0;
       if (lh > 0) {
         const gap = `${lh * 0.15}px`;
-        words.forEach(word => gsap.set(word, { marginRight: gap }));
-        imageWrappers.forEach(wrapper => gsap.set(wrapper, { marginRight: gap }));
+        words.forEach((word) => gsap.set(word, { marginRight: gap }));
+        imageWrappers.forEach((wrapper) => gsap.set(wrapper, { marginRight: gap }));
       }
     });
 
     sizeAndMargin();
     const ro = new ResizeObserver(sizeAndMargin);
     ro.observe(sectionRef.current);
-    return () => { ro.disconnect(); mm.revert(); };
+    return () => {
+      ro.disconnect();
+      mm.revert();
+    };
   }, { scope: sectionRef });
 
   return (
     <section ref={sectionRef} className="w-full pb-12 xl:pb-24">
       <div className="w-full px-0">
         <div className="grid grid-cols-12 gap-y-3 md:gap-y-7 gap-x-3 md:gap-x-5">
-
-          {/* Header */}
           <div className="col-span-12 px-4 md:px-7">
             <div className="grid grid-cols-12 md:border-b md:border-grey-200 md:pb-5 gap-y-3 md:gap-y-7 gap-x-3 md:gap-x-5">
               <div className="col-span-11 md:col-span-9 flex items-end">
@@ -146,6 +147,7 @@ export default function WhatsNew() {
                   </div>
                 </h2>
               </div>
+
               <div className="col-span-12 md:col-span-3 md:items-center md:justify-end hidden md:flex">
                 <a href="https://riseatseven.com/blog/" className="w-full group inline-flex shrink-0 justify-center gap-x-2 items-center relative leading-tight tracking-tightish capitalize font-sans-primary font-medium overflow-hidden border border-transparent cursor-pointer focus:outline-none md:w-auto text-base px-6 py-3 rounded-3xl transition pointer-fine:hover:rounded-xl bg-white text-grey-900 ring-grey-900/5 flex-row-reverse">
                   <div className="relative overflow-hidden">
@@ -167,7 +169,6 @@ export default function WhatsNew() {
             </div>
           </div>
 
-          {/* Swiper */}
           <div className="col-span-12 lg:px-7" style={{ '--swiper-pagination-color': '#000', '--swiper-pagination-progressbar-bg-color': '#fff' }}>
             <Swiper
               modules={[Pagination]}
@@ -181,18 +182,8 @@ export default function WhatsNew() {
               pagination={{ el: '.js-wn-pagination', type: 'progressbar' }}
               breakpoints={{
                 768: { slidesPerView: 2.15 },
-                1024: {
-                  loop: HAS_EXTRA_POSTS ? false : true,
-                  slidesPerView: HAS_EXTRA_POSTS ? 3 : 2.2,
-                  spaceBetween: 15,
-                  slidesOffsetBefore: 0,
-                },
-                1280: {
-                  loop: HAS_EXTRA_POSTS ? false : true,
-                  slidesPerView: HAS_EXTRA_POSTS ? 3 : 2.35,
-                  spaceBetween: 20,
-                  slidesOffsetBefore: 0,
-                },
+                1024: { loop: false, slidesPerView: 3, spaceBetween: 15, slidesOffsetBefore: 0 },
+                1280: { loop: false, slidesPerView: 3, spaceBetween: 20, slidesOffsetBefore: 0 },
               }}
               className="w-full"
             >
@@ -202,6 +193,7 @@ export default function WhatsNew() {
                 </SwiperSlide>
               ))}
             </Swiper>
+
             <div className="w-full relative py-3 mt-5 px-4 md:px-7 lg:hidden">
               <div className="w-full relative">
                 <div className="js-wn-pagination w-full swiper-pagination" />
@@ -209,7 +201,6 @@ export default function WhatsNew() {
             </div>
           </div>
 
-          {/* Mobile button */}
           <div className="col-span-12 md:hidden px-4 md:px-7">
             <a href="https://riseatseven.com/blog/" className="w-full group inline-flex shrink-0 justify-center gap-x-2 items-center relative leading-tight tracking-tightish capitalize font-sans-primary font-medium overflow-hidden border border-transparent cursor-pointer focus:outline-none md:w-auto text-base px-6 py-3 rounded-3xl transition pointer-fine:hover:rounded-xl bg-white text-grey-900 ring-grey-900/5 flex-row-reverse">
               <div className="relative overflow-hidden">
@@ -228,7 +219,6 @@ export default function WhatsNew() {
               </div>
             </a>
           </div>
-
         </div>
       </div>
     </section>
