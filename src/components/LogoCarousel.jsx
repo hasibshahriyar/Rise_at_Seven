@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, FreeMode } from 'swiper/modules';
+import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/free-mode';
 
 // Real-site order: 8 inline SVG logos + 4 image logos = 12 total.
 const SLIDES = [
@@ -37,22 +36,28 @@ export default function LogoCarousel() {
             className="relative w-full col-span-20 md:col-span-16 lg:col-span-17 xl:col-span-18"
           >
             <div className="w-full relative overflow-hidden z-0">
-              <div className="flex relative z-0 overflow-hidden w-full">
+              <div className="flex relative z-0 overflow-hidden w-[120vw]">
                 <Swiper
-                  modules={[Autoplay, FreeMode]}
-                  slidesPerView="auto"
-                  spaceBetween={48}
-                  speed={5000}
-                  freeMode={{ enabled: true, momentum: false }}
-                  autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false, waitForTransition: false }}
+                  modules={[Autoplay]}
+                  slidesPerView={3}
+                  speed={7000}
+                  autoplay={{ delay: 0, disableOnInteraction: false }}
                   loop={true}
                   loopAdditionalSlides={SLIDES.length}
+                  loopedSlides={SLIDES.length}
                   allowTouchMove={true}
                   grabCursor={true}
                   className="w-full logo-carousel-swiper"
+                  breakpoints={{
+                    640: { slidesPerView: 2.5 },
+                    768: { slidesPerView: 5 },
+                    1024: { slidesPerView: 6 },
+                    1440: { slidesPerView: 7.5 },
+                    1920: { slidesPerView: 8.5 },
+                  }}
                 >
                   {SLIDES.map((slide) => (
-                    <SwiperSlide key={slide.id} className="!w-auto">
+                    <SwiperSlide key={slide.id}>
                       <div className="w-20 py-5 relative lg:w-24">
                         <div className="w-full h-full relative">
                           <div className="aspect-20/9 w-full h-full relative">

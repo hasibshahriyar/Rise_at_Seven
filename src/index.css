@@ -187,7 +187,7 @@
 }
 
 /* Logo carousel: centre each logo inside its Swiper slide */
-.js-carousel-74 .swiper-slide {
+.logo-carousel-swiper .swiper-slide {
   display: flex;
   align-items: center;
   justify-content: center;
