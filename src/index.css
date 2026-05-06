@@ -193,6 +193,11 @@
   justify-content: center;
 }
 
+/* Keep marquee motion at one constant pace without easing in/out. */
+.logo-carousel-swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
 /* Suppress native cursor when the custom GSAP cursor is active */
 html.hide-cursor,
 html.hide-cursor * {

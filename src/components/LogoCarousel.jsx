@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, FreeMode } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/free-mode';
 
 // Real-site order: 8 inline SVG logos + 4 image logos = 12 total.
 const SLIDES = [
@@ -36,25 +37,22 @@ export default function LogoCarousel() {
             className="relative w-full col-span-20 md:col-span-16 lg:col-span-17 xl:col-span-18"
           >
             <div className="w-full relative overflow-hidden z-0">
-              <div className="flex relative z-0 overflow-hidden w-[120vw]">
+              <div className="flex relative z-0 overflow-hidden w-full">
                 <Swiper
-                  modules={[Autoplay]}
-                  slidesPerView={2.6}
-                  speed={6500}
-                  autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false }}
+                  modules={[Autoplay, FreeMode]}
+                  slidesPerView="auto"
+                  spaceBetween={48}
+                  speed={5000}
+                  freeMode={{ enabled: true, momentum: false }}
+                  autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false, waitForTransition: false }}
                   loop={true}
-                  allowTouchMove={false}
-                  className="w-full !ease-linear"
-                  breakpoints={{
-                    640: { slidesPerView: 4 },
-                    768: { slidesPerView: 5.5 },
-                    1024: { slidesPerView: 6.5 },
-                    1440: { slidesPerView: 8 },
-                    1920: { slidesPerView: 9 },
-                  }}
+                  loopAdditionalSlides={SLIDES.length}
+                  allowTouchMove={true}
+                  grabCursor={true}
+                  className="w-full logo-carousel-swiper"
                 >
                   {SLIDES.map((slide) => (
-                    <SwiperSlide key={slide.id}>
+                    <SwiperSlide key={slide.id} className="!w-auto">
                       <div className="w-20 py-5 relative lg:w-24">
                         <div className="w-full h-full relative">
                           <div className="aspect-20/9 w-full h-full relative">
