@@ -1,7 +1,3 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
-import 'swiper/css';
-
 // Real-site order: 8 inline SVG logos + 4 image logos = 12 total.
 const SLIDES = [
   { id: 'ninja', src: '/images/Logos/Client/Black/logo-ninja.svg', alt: 'SharkNinja' },
@@ -37,41 +33,21 @@ export default function LogoCarousel() {
             style={{ '--blur': 1, '--blurs': 5 }}
           >
             <div className="w-full relative overflow-hidden z-0">
-              <div className="flex relative z-0 overflow-hidden w-[120vw]">
-                <Swiper
-                  modules={[Autoplay]}
-                  slidesPerView={3}
-                  speed={7000}
-                  autoplay={{ delay: 0, disableOnInteraction: false, waitForTransition: false }}
-                  loop={true}
-                  allowTouchMove={true}
-                  grabCursor={true}
-                  className="w-full logo-carousel-swiper"
-                  breakpoints={{
-                    640: { slidesPerView: 2.5 },
-                    768: { slidesPerView: 5 },
-                    1024: { slidesPerView: 6 },
-                    1440: { slidesPerView: 7.5 },
-                    1920: { slidesPerView: 8.5 },
-                  }}
-                >
-                  {SLIDES.map((slide) => (
-                    <SwiperSlide key={slide.id}>
-                      <div className="w-20 py-5 relative lg:w-24">
-                        <div className="w-full h-full relative">
-                          <div className="aspect-20/9 w-full h-full relative">
-                            <img
-                              src={slide.src}
-                              alt={slide.alt}
-                              className="w-full h-full object-contain absolute inset-0 transition-opacity"
-                              loading="lazy"
-                            />
-                          </div>
-                        </div>
+              <div className="logo-marquee-track">
+                {[...SLIDES, ...SLIDES].map((slide, i) => (
+                  <div key={i} className="logo-marquee-item">
+                    <div className="w-20 py-5 relative lg:w-24">
+                      <div className="aspect-20/9 w-full relative">
+                        <img
+                          src={slide.src}
+                          alt={slide.alt}
+                          className="w-full h-full object-contain absolute inset-0"
+                          loading="lazy"
+                        />
                       </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
