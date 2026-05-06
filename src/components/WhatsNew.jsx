@@ -36,6 +36,8 @@ const POSTS = [
   },
 ];
 
+const HAS_EXTRA_POSTS = POSTS.length > 3;
+
 function PostCard({ post }) {
   return (
     <a
@@ -179,8 +181,18 @@ export default function WhatsNew() {
               pagination={{ el: '.js-wn-pagination', type: 'progressbar' }}
               breakpoints={{
                 768: { slidesPerView: 2.15 },
-                1024: { loop: false, slidesPerView: 3, spaceBetween: 15, slidesOffsetBefore: 0 },
-                1280: { loop: false, slidesPerView: 3, spaceBetween: 20, slidesOffsetBefore: 0 },
+                1024: {
+                  loop: HAS_EXTRA_POSTS ? false : true,
+                  slidesPerView: HAS_EXTRA_POSTS ? 3 : 2.2,
+                  spaceBetween: 15,
+                  slidesOffsetBefore: 0,
+                },
+                1280: {
+                  loop: HAS_EXTRA_POSTS ? false : true,
+                  slidesPerView: HAS_EXTRA_POSTS ? 3 : 2.35,
+                  spaceBetween: 20,
+                  slidesOffsetBefore: 0,
+                },
               }}
               className="w-full"
             >

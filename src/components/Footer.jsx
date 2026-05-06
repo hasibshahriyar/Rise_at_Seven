@@ -136,7 +136,7 @@ export default function Footer() {
               </div>
               <div className="w-full mt-1 md:ml-auto md:text-right lg:mt-0 lg:w-auto">
                 <a href="https://hasibshahriyar.github.io/MyProfile/" target="_blank" rel="noreferrer" className="text-white font-light leading-tight text-xs link">
-                  Website Hasib Shahriyar
+                  Website Made By Hasib Shahriyar
                 </a>
               </div>
             </div>
