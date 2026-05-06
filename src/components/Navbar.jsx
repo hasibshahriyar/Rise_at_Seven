@@ -676,21 +676,6 @@ export default function Navbar() {
                 </MobileNavItem>
 
                 <MobileNavItem
-                  label="Industries"
-                  href="https://riseatseven.com/services/b2b-marketing/"
-                  itemId="industries"
-                  expandedItem={expandedMobileItem}
-                  onToggle={toggleMobileItem}
-                >
-                  <a
-                    href="https://riseatseven.com/services/b2b-marketing/"
-                    className="group inline-flex tracking-tight leading-tight font-medium relative text-white text-xl"
-                  >
-                    B2B Marketing
-                  </a>
-                </MobileNavItem>
-
-                <MobileNavItem
                   label="International"
                   href="https://riseatseven.com/international/"
                   itemId="103"
