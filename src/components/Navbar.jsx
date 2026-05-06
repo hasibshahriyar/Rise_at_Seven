@@ -282,6 +282,14 @@ const INTERNATIONAL_IMAGES = [
   { id: 23603, src: '/images/Logos_2026-04-23-095313_xfhk.webp',           alt: 'Netherlands Digital PR' },
 ];
 
+const INDUSTRIES_LINKS = [
+  { id: 22669, href: 'https://riseatseven.com/services/b2b-marketing/', label: 'B2B Marketing' },
+];
+
+const INDUSTRIES_IMAGES = [
+  { id: 22669, src: '/images/0B5A6875.webp', alt: 'B2B Marketing' },
+];
+
 const ABOUT_LINKS = [
   { id: 16915, href: 'https://riseatseven.com/about/',         label: 'About Us' },
   { id: 16916, href: 'https://riseatseven.com/meet-the-team/', label: 'Meet The Risers' },
@@ -323,6 +331,7 @@ export default function Navbar() {
   const [expandedMobileItem, setExpandedMobileItem]   = useState(null);
   // Per-mega-menu active image IDs
   const [servicesActive, setServicesActive]           = useState(4790);
+  const [industriesActive, setIndustriesActive]       = useState(22669);
   const [intlActive, setIntlActive]                   = useState(4762);
   const [aboutActive, setAboutActive]                 = useState(16915);
   const [announcementBar, setAnnouncementBar]         = useState(DEFAULT_ANNOUNCEMENT);
@@ -825,6 +834,38 @@ export default function Navbar() {
           </div>
         </div>
 
+        {/* ── Industries mega menu (ID 201) ─────────────────── */}
+        <div
+          ref={(el) => { megaMenuElsRef.current[201] = el; }}
+          data-menu-id="201"
+          className={`flex-shrink-0 absolute z-20 left-1/2 -translate-x-1/2 translate-y-full hidden pt-10 pointer-fine:flex js-mega-menu ${
+            hideAnnouncementBar ? 'bottom-10' : 'bottom-0'
+          } ${activeMegaMenu === 201 ? 'pointer-events-auto' : 'pointer-events-none'}`}
+          style={{ opacity: 0 }}
+        >
+          <div className="bg-white rounded-3xl flex shrink-0 transition">
+            <div className="flex-1 inline-flex items-center justify-center px-12">
+              <div className="flex gap-x-12">
+                <div className="flex-1 -mt-3">
+                  <ul className="flex flex-col gap-y-0.5">
+                    <div className="h-8" />
+                    {INDUSTRIES_LINKS.map((link) => (
+                      <MegaMenuLink
+                        key={link.id}
+                        href={link.href}
+                        label={link.label}
+                        size="text-3xl"
+                        onMouseEnter={() => setIndustriesActive(link.id)}
+                      />
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <MegaMenuImagePanel images={INDUSTRIES_IMAGES} activeId={industriesActive} width="w-72" />
+          </div>
+        </div>
+
         {/* ── International mega menu (ID 103) ─────────────────── */}
         <div
           ref={(el) => { megaMenuElsRef.current[103] = el; }}
@@ -935,11 +976,11 @@ export default function Navbar() {
             <DesktopNavLink
               href="https://riseatseven.com/services/b2b-marketing/"
               label="Industries"
-              menuId={null}
+              menuId={201}
               activeMegaMenu={activeMegaMenu}
               isTransparent={isTransparent}
               onMouseEnter={(e) => {
-                setActiveMegaMenu(false);
+                setActiveMegaMenu(201);
                 updateHoverBackground(e, true);
               }}
             />
