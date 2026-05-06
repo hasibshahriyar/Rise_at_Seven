@@ -296,6 +296,13 @@ const ABOUT_IMAGES = [
   { id: 16918, src: '/images/d4df0d30-d590-4e94-9056-9491f4beacba.webp',  alt: 'Testimonials' },
 ];
 
+const DEFAULT_ANNOUNCEMENT = {
+  text: '🚨 Where are your customers actually searching? Download the report',
+  href: 'https://riseatseven.com/multi-channel-search-report-2026-/',
+};
+
+const LIVE_SITE_MIRROR_URL = 'https://r.jina.ai/http://riseatseven.com/';
+
 // ─────────────────────────────────────────────────────────────────
 // Main Navbar component
 // ─────────────────────────────────────────────────────────────────
@@ -318,6 +325,7 @@ export default function Navbar() {
   const [servicesActive, setServicesActive]           = useState(4790);
   const [intlActive, setIntlActive]                   = useState(4762);
   const [aboutActive, setAboutActive]                 = useState(16915);
+  const [announcementBar, setAnnouncementBar]         = useState(DEFAULT_ANNOUNCEMENT);
 
   // ── Refs ──────────────────────────────────────────────────────
   const navRef        = useRef(null);   // GSAP scope
@@ -468,6 +476,46 @@ export default function Navbar() {
     if (hoveringLink) setHideHeader(false);
   }, [hoveringLink]);
 
+  // ── Effect: sync announcement bar text/link from live site ─────
+  useEffect(() => {
+    const parseLiveAnnouncement = (raw) => {
+      const lineMatch = raw.match(/\[\s*(🚨[^\]]+)\]\((https?:\/\/riseatseven\.com\/[^)]+)\)/i);
+      if (!lineMatch) return null;
+
+      const text = lineMatch[1].replace(/\s+/g, ' ').trim();
+      const href = lineMatch[2].trim();
+      if (!text || !href) return null;
+
+      return { text, href };
+    };
+
+    const syncAnnouncement = async (signal) => {
+      try {
+        const res = await fetch(LIVE_SITE_MIRROR_URL, { signal, cache: 'no-store' });
+        if (!res.ok) return;
+
+        const raw = await res.text();
+        const parsed = parseLiveAnnouncement(raw);
+        if (parsed) setAnnouncementBar(parsed);
+      } catch {
+        // Keep fallback content silently when remote content isn't reachable.
+      }
+    };
+
+    const controller = new AbortController();
+    syncAnnouncement(controller.signal);
+
+    const intervalId = window.setInterval(() => {
+      const refreshController = new AbortController();
+      syncAnnouncement(refreshController.signal);
+    }, 5 * 60 * 1000);
+
+    return () => {
+      controller.abort();
+      window.clearInterval(intervalId);
+    };
+  }, []);
+
   // ── Hover background pill helper ──────────────────────────────
   const updateHoverBackground = useCallback((event, value) => {
     if (value) {
@@ -513,20 +561,20 @@ export default function Navbar() {
         }`}
       >
         <a
-          href="https://riseatseven.com/multi-channel-search-report-2026-/"
+          href={announcementBar.href}
           className="group flex justify-center z-[60] relative items-center text-xs w-full py-2 px-5 text-balance text-center tracking-tight leading-none font-semibold rounded-2xl transition pointer-fine:hover:rounded-md text-grey-900 bg-mint"
         >
           {/* Mobile: single line */}
           <div className="block mt-0.5 lg:hidden">
-            🚨 Where are your customers actually searching? Download the report
+            {announcementBar.text}
           </div>
           {/* Desktop: slide-up hover duplicate */}
           <div className="relative overflow-hidden mt-0.5 hidden lg:block">
             <div className="transition pointer-fine:group-hover:-translate-y-6">
-              🚨 Where are your customers actually searching? Download the report
+              {announcementBar.text}
             </div>
             <div className="transition absolute top-0 left-0 translate-y-6 pointer-fine:group-hover:translate-y-0">
-              🚨 Where are your customers actually searching? Download the report
+              {announcementBar.text}
             </div>
           </div>
         </a>
