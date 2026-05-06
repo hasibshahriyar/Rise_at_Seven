@@ -933,6 +933,17 @@ export default function Navbar() {
               }}
             />
             <DesktopNavLink
+              href="https://riseatseven.com/services/b2b-marketing/"
+              label="Industries"
+              menuId={null}
+              activeMegaMenu={activeMegaMenu}
+              isTransparent={isTransparent}
+              onMouseEnter={(e) => {
+                setActiveMegaMenu(false);
+                updateHoverBackground(e, true);
+              }}
+            />
+            <DesktopNavLink
               href="https://riseatseven.com/international/"
               label="International"
               menuId={103}
