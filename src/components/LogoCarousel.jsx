@@ -42,10 +42,8 @@ export default function LogoCarousel() {
                   modules={[Autoplay]}
                   slidesPerView={3}
                   speed={7000}
-                  autoplay={{ delay: 0, disableOnInteraction: false }}
+                  autoplay={{ delay: 0, disableOnInteraction: false, waitForTransition: false }}
                   loop={true}
-                  loopAdditionalSlides={SLIDES.length}
-                  loopedSlides={SLIDES.length}
                   allowTouchMove={true}
                   grabCursor={true}
                   className="w-full logo-carousel-swiper"
