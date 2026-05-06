@@ -198,6 +198,34 @@
   transition-timing-function: linear !important;
 }
 
+/* Real-site style layered side blur for logo carousel edges. */
+.section-blur {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  pointer-events: none;
+  width: 4rem;
+  display: flex;
+}
+
+.section-blur--left {
+  left: 0;
+}
+
+.section-blur--right {
+  right: 0;
+  flex-direction: row-reverse;
+}
+
+.section-blur > div {
+  width: calc(100% / var(--blurs, 5));
+  height: 100%;
+  background: var(--color-grey-100);
+  opacity: calc((var(--blurs, 5) - var(--index, 0)) / var(--blurs, 5));
+  filter: blur(calc((var(--index, 0) + 1) * var(--blur, 1) * 1px));
+}
+
 /* Suppress native cursor when the custom GSAP cursor is active */
 html.hide-cursor,
 html.hide-cursor * {

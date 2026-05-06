@@ -34,6 +34,7 @@ export default function LogoCarousel() {
           {/* Carousel */}
           <div
             className="relative w-full col-span-20 md:col-span-16 lg:col-span-17 xl:col-span-18"
+            style={{ '--blur': 1, '--blurs': 5 }}
           >
             <div className="w-full relative overflow-hidden z-0">
               <div className="flex relative z-0 overflow-hidden w-[120vw]">
@@ -75,9 +76,20 @@ export default function LogoCarousel() {
                 </Swiper>
               </div>
 
-              {/* Edge blurs */}
-              <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#efeeec] to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#efeeec] to-transparent z-10 pointer-events-none" />
+              <div className="section-blur section-blur--left">
+                <div style={{ '--index': 0 }} />
+                <div style={{ '--index': 1 }} />
+                <div style={{ '--index': 2 }} />
+                <div style={{ '--index': 3 }} />
+                <div style={{ '--index': 4 }} />
+              </div>
+              <div className="section-blur section-blur--right">
+                <div style={{ '--index': 0 }} />
+                <div style={{ '--index': 1 }} />
+                <div style={{ '--index': 2 }} />
+                <div style={{ '--index': 3 }} />
+                <div style={{ '--index': 4 }} />
+              </div>
             </div>
           </div>
 
