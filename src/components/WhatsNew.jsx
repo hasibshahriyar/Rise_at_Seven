@@ -174,7 +174,8 @@ export default function WhatsNew() {
               modules={[Pagination]}
               slidesPerView={1.15}
               spaceBetween={15}
-              loop={true}
+              loop={false}
+              rewind={true}
               grabCursor={true}
               allowTouchMove={true}
               slidesOffsetBefore={15}
@@ -182,8 +183,8 @@ export default function WhatsNew() {
               pagination={{ el: '.js-wn-pagination', type: 'progressbar' }}
               breakpoints={{
                 768: { slidesPerView: 2.15 },
-                1024: { loop: false, slidesPerView: 3, spaceBetween: 15, slidesOffsetBefore: 0 },
-                1280: { loop: false, slidesPerView: 3, spaceBetween: 20, slidesOffsetBefore: 0 },
+                1024: { slidesPerView: 3, spaceBetween: 15, slidesOffsetBefore: 0 },
+                1280: { slidesPerView: 3, spaceBetween: 20, slidesOffsetBefore: 0 },
               }}
               className="w-full"
             >
