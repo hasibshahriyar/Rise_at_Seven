@@ -203,27 +203,25 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  z-index: 10;
+  z-index: 20;
   pointer-events: none;
-  width: 4rem;
-  display: flex;
+  width: 7rem;
 }
 
 .section-blur--left {
-  left: 0;
+  left: -2.5rem;
 }
 
 .section-blur--right {
-  right: 0;
-  flex-direction: row-reverse;
+  right: -2.5rem;
 }
 
 .section-blur > div {
-  width: calc(100% / var(--blurs, 5));
-  height: 100%;
-  background: var(--color-grey-100);
-  opacity: calc((var(--blurs, 5) - var(--index, 0)) / var(--blurs, 5));
-  filter: blur(calc((var(--index, 0) + 1) * var(--blur, 1) * 1px));
+  position: absolute;
+  inset: 0;
+  z-index: var(--index, 0);
+  -webkit-backdrop-filter: blur(calc(var(--index, 0) * 2px * var(--blur, 1)));
+  backdrop-filter: blur(calc(var(--index, 0) * 2px * var(--blur, 1)));
 }
 
 /* Suppress native cursor when the custom GSAP cursor is active */
