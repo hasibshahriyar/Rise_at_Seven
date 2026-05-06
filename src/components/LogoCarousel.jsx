@@ -75,21 +75,21 @@ export default function LogoCarousel() {
                   ))}
                 </Swiper>
               </div>
+            </div>
 
-              <div className="section-blur section-blur--left">
-                <div style={{ '--index': 0 }} />
-                <div style={{ '--index': 1 }} />
-                <div style={{ '--index': 2 }} />
-                <div style={{ '--index': 3 }} />
-                <div style={{ '--index': 4 }} />
-              </div>
-              <div className="section-blur section-blur--right">
-                <div style={{ '--index': 0 }} />
-                <div style={{ '--index': 1 }} />
-                <div style={{ '--index': 2 }} />
-                <div style={{ '--index': 3 }} />
-                <div style={{ '--index': 4 }} />
-              </div>
+            <div className="section-blur section-blur--left">
+              <div style={{ '--index': 0 }} />
+              <div style={{ '--index': 1 }} />
+              <div style={{ '--index': 2 }} />
+              <div style={{ '--index': 3 }} />
+              <div style={{ '--index': 4 }} />
+            </div>
+            <div className="section-blur section-blur--right">
+              <div style={{ '--index': 0 }} />
+              <div style={{ '--index': 1 }} />
+              <div style={{ '--index': 2 }} />
+              <div style={{ '--index': 3 }} />
+              <div style={{ '--index': 4 }} />
             </div>
           </div>
 
