@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 // Real-site order: 8 inline SVG logos + 4 image logos = 12 total.
 const SLIDES = [
   { id: 'ninja', src: '/images/Logos/Client/Black/logo-ninja.svg', alt: 'SharkNinja' },
@@ -15,6 +17,49 @@ const SLIDES = [
 ];
 
 export default function LogoCarousel() {
+  const trackRef   = useRef(null);
+  const posRef     = useRef(0);          // current scroll position in px
+  const rafRef     = useRef(null);
+  const dragState  = useRef({ active: false, startX: 0, startPos: 0 });
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const SPEED = 0.6; // px per frame at 60 fps — matches real site pace
+
+    const step = () => {
+      if (!dragState.current.active) {
+        const halfWidth = track.scrollWidth / 2;
+        posRef.current = (posRef.current + SPEED) % halfWidth;
+        track.style.transform = `translateX(-${posRef.current}px)`;
+      }
+      rafRef.current = requestAnimationFrame(step);
+    };
+    rafRef.current = requestAnimationFrame(step);
+
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  // ── Drag / swipe handlers ─────────────────────────────────────
+  const onDragStart = (clientX) => {
+    dragState.current = { active: true, startX: clientX, startPos: posRef.current };
+    if (trackRef.current) trackRef.current.style.cursor = 'grabbing';
+  };
+
+  const onDragMove = (clientX) => {
+    if (!dragState.current.active) return;
+    const delta = dragState.current.startX - clientX;
+    const halfWidth = trackRef.current ? trackRef.current.scrollWidth / 2 : 0;
+    posRef.current = ((dragState.current.startPos + delta) % halfWidth + halfWidth) % halfWidth;
+    if (trackRef.current) trackRef.current.style.transform = `translateX(-${posRef.current}px)`;
+  };
+
+  const onDragEnd = () => {
+    dragState.current.active = false;
+    if (trackRef.current) trackRef.current.style.cursor = 'grab';
+  };
+
   return (
     <section className="w-full pt-6 xl:pt-12 overflow-hidden">
       <div className="w-full px-4 md:px-7">
@@ -32,8 +77,18 @@ export default function LogoCarousel() {
             className="relative w-full col-span-20 md:col-span-16 lg:col-span-17 xl:col-span-18"
             style={{ '--blur': 1, '--blurs': 5 }}
           >
-            <div className="w-full relative overflow-hidden z-0">
-              <div className="logo-marquee-track">
+            <div
+              className="w-full relative overflow-hidden z-0 select-none"
+              style={{ cursor: 'grab' }}
+              onMouseDown={(e) => onDragStart(e.clientX)}
+              onMouseMove={(e) => onDragMove(e.clientX)}
+              onMouseUp={onDragEnd}
+              onMouseLeave={onDragEnd}
+              onTouchStart={(e) => onDragStart(e.touches[0].clientX)}
+              onTouchMove={(e) => { e.preventDefault(); onDragMove(e.touches[0].clientX); }}
+              onTouchEnd={onDragEnd}
+            >
+              <div ref={trackRef} className="logo-marquee-track" style={{ willChange: 'transform' }}>
                 {[...SLIDES, ...SLIDES].map((slide, i) => (
                   <div key={i} className="logo-marquee-item">
                     <div className="w-20 py-5 relative lg:w-24">
