@@ -26,7 +26,7 @@ export default function LogoCarousel() {
     const track = trackRef.current;
     if (!track) return;
 
-    const SPEED = 0.8; // px per frame at 60 fps — matches real site pace
+    const SPEED = 0.45; // px per frame at 60 fps — slower to match real site
 
     const step = () => {
       if (!dragState.current.active) {
