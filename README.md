@@ -1,6 +1,6 @@
-# Rise at Seven — Clone
+# Rise at Seven — React
 
-A pixel-perfect static clone of [riseatseven.com](https://riseatseven.com), built without a backend or build tools.
+A pixel-faithful React rebuild of [riseatseven.com](https://riseatseven.com).
 
 **Live demo → [rise-at-seven.vercel.app](https://rise-at-seven.vercel.app)**
 
@@ -10,35 +10,38 @@ A pixel-perfect static clone of [riseatseven.com](https://riseatseven.com), buil
 
 | Tool | Purpose |
 |------|---------|
-| Tailwind CSS (CDN v3) | Utility-first styling |
-| GSAP 3.12.5 + ScrollTrigger | Scroll animations, sticky sections, parallax |
-| Alpine.js 3.14.3 | Reactive UI — nav, mobile menu, hero tabs |
-| Swiper 11 | Logo carousel |
+| React 18 + Vite | Component framework & build |
+| Tailwind CSS 3 | Utility-first styling |
+| GSAP 3 + ScrollTrigger | All animations & scroll effects |
+| Swiper | Touch carousels (Logo, Legacy, WhatsNew) |
+| FontAwesome Pro | Icon kit |
 | Vercel | Hosting + static asset caching |
 
-## Key Features Replicated
+## Features
 
-- **Intro circle-mask reveal** — SVG ellipse animates on page load
-- **Fixed header with hide-on-scroll** — slides up on scroll down, reappears on scroll up
-- **Mobile hamburger menu** — semi-transparent frosted panel with scroll lock
-- **Hero image tabs** — Alpine-powered active state with blur transition
-- **Featured Work sticky scroll** — GSAP pins dark card while case study images scroll vertically
-- **Logo carousel** — infinite Swiper loop with edge fade
-- **Footer reveal animation** — content animates in on scroll
+- **Custom circular cursor** — mint-green cursor activates on interactive elements (pointer:fine only)
+- **GSAP page-reveal** — SVG ellipse mask animation on load
+- **Scroll-driven animations** — heading parallax, horizontal marquee loop, stacked card scroll scrub
+- **Circle-mask hover effect** — blurred image reveals on hover for blog/work cards
+- **Responsive** — Swiper carousels on mobile, static grids on desktop; distinct layouts per breakpoint
+- **Saans typeface** — custom font self-hosted in `/public/fonts/`
 
 ## Project Structure
 
 ```
-index.html     # Full page markup + inline Alpine components
-styles.css     # Custom CSS (resets, aspect-ratio utilities, animations)
-scripts.js     # GSAP ScrollTrigger builds + Swiper init
-fonts/         # Self-hosted typefaces
-images/        # All site images (CDN-migrated to local)
-vercel.json    # Cache headers for static assets
+src/
+  App.jsx              # Root layout, CustomCursor, CircleMaskReveal
+  index.css            # Design tokens, font-faces, global styles
+  components/          # One file per section
+public/
+  fonts/               # Self-hosted Saans woff2 files
+  images/              # All site images
+index.html             # Vite entry point + FontAwesome kit
+vercel.json            # Build config + cache headers
 ```
 
-## Notable Fixes
+## Deploy
 
-- `aspect-20/9`, `aspect-4/3`, `aspect-1/1` — Tailwind CDN doesn't generate fraction-notation aspect classes; added manual CSS rules
-- `overflow-x: clip` on `body` — prevents horizontal scrollbar from `w-[120vw]` carousel without breaking `position: sticky` (unlike `overflow-x: hidden`)
-- Scroll lock targets `<html>` not `<body>` since `body` is no longer the scroll container
+Deploys automatically via Vercel on every push to `main`.  
+Build command: `npm run build` — output directory: `dist`
+
