@@ -172,9 +172,14 @@ export default function WhatsNew() {
               slidesPerView={1.15}
               spaceBetween={15}
               loop={true}
-              loopAddBlankSlides={true}
+              loopAdditionalSlides={POSTS.length}
+              loopedSlides={POSTS.length}
+              watchSlidesProgress={true}
               grabCursor={true}
+              simulateTouch={true}
               allowTouchMove={true}
+              preventClicks={true}
+              preventClicksPropagation={true}
               slidesOffsetBefore={15}
               speed={700}
               pagination={{ el: '.js-wn-pagination', type: 'progressbar' }}
