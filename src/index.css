@@ -195,7 +195,9 @@
 .logo-marquee-track {
   display: flex;
   width: max-content;
-  animation: logo-marquee 18s linear infinite;
+  animation: logo-marquee 18s linear infinite !important;
+  animation-iteration-count: infinite !important;
+  animation-play-state: running !important;
 }
 
 .logo-marquee-item {
